@@ -5,13 +5,17 @@
     { "src": "index.html", "use": "@vercel/static" },
     { "src": "styles.css", "use": "@vercel/static" },
     { "src": "script.js", "use": "@vercel/static" },
-    { "src": "images/**", "use": "@vercel/static" }
+    { "src": "images/**", "use": "@vercel/static" },
+    { "src": "V2/index.html", "use": "@vercel/static" },
+    { "src": "V2/v2-script.js", "use": "@vercel/static" }
   ],
   "routes": [
     { "src": "/get-access-token", "dest": "server.js" },
     { "src": "/images/(.*)", "dest": "/images/$1" },
     { "src": "/styles.css", "dest": "/styles.css" },
     { "src": "/script.js", "dest": "/script.js" },
+    { "src": "/V2", "dest": "/V2/index.html" },
+    { "src": "/V2/(.*)", "dest": "/V2/$1" },
     { "src": "/(.*)", "dest": "index.html" }
   ]
 }
