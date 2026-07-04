@@ -1,10 +1,18 @@
 require('dotenv').config();
+const path = require('path');
 const express = require('express');
 const cors = require('cors');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+app.get('/', (req, res) => res.sendFile(path.join(__dirname, 'index.html')));
+app.get('/styles.css', (req, res) => res.sendFile(path.join(__dirname, 'styles.css')));
+app.get('/script.js', (req, res) => res.sendFile(path.join(__dirname, 'script.js')));
+app.use('/images', express.static(path.join(__dirname, 'images')));
+app.get('/V2', (req, res) => res.sendFile(path.join(__dirname, 'V2', 'index.html')));
+app.use('/V2', express.static(path.join(__dirname, 'V2')));
 
 app.post('/get-access-token', async (req, res) => {
   try {
@@ -29,4 +37,7 @@ app.post('/get-access-token', async (req, res) => {
   }
 });
 
-app.listen(3000, () => console.log('Retell token server running on http://localhost:3000'));
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
+  console.log('V2 widget test page: http://localhost:3000/V2');
+});
